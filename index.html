@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ela Prvić Luka - Apartmani</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0077be;
+            --sand: #f8f6f2;
+            --dark: #2c3e50;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--sand);
+            color: var(--dark);
+        }
+
+        /* Menu i Flagi */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        /* Sekcja Hero - powitanie */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/441223961_122146904666068213_561337482594630564_n.jpg?_nc_cat=110&stp=dst-jpg_s960x960&_nc_sid=cc71e4&_nc_ohc=O_k_uG_S_8cQ7kNvgEt3m_O&_nc_oc=Adih-j1f3Y-R8Bf9f8f8f8f8f8f8f8f8f8&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&oh=00_AYB_9_9_9_9&oe=66E1D9B1') no-repeat center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; }
+        .hero p { font-size: 1.2rem; margin: 20px 0; max-width: 700px; }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        /* Kontener na treści z FB */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+        }
+
+        .fb-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Ela Prvić Luka</a>
+        <div class="lang-switch">
+            <span onclick="changeLang('pl')" title="Polski">🇵🇱</span>
+            <span onclick="changeLang('hr')" title="Hrvatski">🇭🇷</span>
+            <span onclick="changeLang('en')" title="English">🇬🇧</span>
+            <span onclick="changeLang('de')" title="Deutsch">🇩🇪</span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 id="hero-title">Wyspiarski spokój u Eli</h1>
+        <p id="hero-desc">Prvić Luka – Twoja przystań na Adriatyku bez samochodów i pośpiechu.</p>
+        <a href="https://www.facebook.com/ElaPrvicLuka" class="btn" id="btn-book">Zobacz rezerwacje na FB</a>
+    </section>
+
+    <div class="container">
+        <div class="fb-content">
+            <h2 id="section-title">Aktualności z wyspy</h2>
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v18.0"></script>
+            <div class="fb-page" 
+                 data-href="https://www.facebook.com/ElaPrvicLuka" 
+                 data-tabs="timeline,events" 
+                 data-width="1000"
+                 data-small-header="false" 
+                 data-adapt-container-width="true" 
+                 data-hide-cover="false" 
+                 data-show-facepile="true">
+            </div>
+        </div>
+
+        <aside>
+            <h3 id="aside-title">Kontakt</h3>
+            <p>Prvić Luka, Otok Prvić</p>
+            <p>Email: kontakt@elaprvic.pl</p>
+            <hr>
+            <p id="aside-desc">Napisz do nas na Messengerze, aby sprawdzić wolne terminy i ceny!</p>
+            <a href="https://m.me/ElaPrvicLuka" class="btn" style="display: block; text-align: center;">Messenger Chat</a>
+        </aside>
+    </div>
+
+    <footer>
+        &copy; 2026 Ela Prvić Luka. Created with ❤️ for island lovers.
+    </footer>
+
+    <script>
+        // System tłumaczeń
+        const translations = {
+            pl: {
+                title: "Wyspiarski spokój u Eli",
+                desc: "Prvić Luka – Twoja przystań na Adriatyku bez samochodów i pośpiechu.",
+                book: "Zobacz rezerwacje na FB",
+                section: "Aktualności z wyspy",
+                asideTitle: "Kontakt",
+                asideDesc: "Napisz do nas na Messengerze, aby sprawdzić wolne terminy i ceny!"
+            },
+            hr: {
+                title: "Otočki mir kod Ele",
+                desc: "Prvić Luka – Vaše utočište na Jadranu bez automobila i žurbe.",
+                book: "Pogledajte rezervacije",
+                section: "Novosti s otoka",
+                asideTitle: "Kontakt",
+                asideDesc: "Pišite nam na Messenger kako biste provjerili slobodne termine i cijene!"
+            },
+            en: {
+                title: "Island Peace at Ela's",
+                desc: "Prvić Luka – Your Adriatic sanctuary without cars or crowds.",
+                book: "Check on Facebook",
+                section: "Latest News",
+                asideTitle: "Contact",
+                asideDesc: "Message us on Messenger to check availability and prices!"
+            },
+            de: {
+                title: "Inselruhe bei Ela",
+                desc: "Prvić Luka – Ihre Oase an der Adria, ganz ohne Autos und Hektik.",
+                book: "Reservierungen auf FB",
+                section: "Insel-News",
+                asideTitle: "Kontakt",
+                asideDesc: "Schreiben Sie uns auf Messenger für Verfügbarkeit und Preise!"
+            }
+        };
+
+        function changeLang(lang) {
+            document.getElementById('hero-title').innerText = translations[lang].title;
+            document.getElementById('hero-desc').innerText = translations[lang].desc;
+            document.getElementById('btn-book').innerText = translations[lang].book;
+            document.getElementById('section-title').innerText = translations[lang].section;
+            document.getElementById('aside-title').innerText = translations[lang].asideTitle;
+            document.getElementById('aside-desc').innerText = translations[lang].asideDesc;
+            
+            // Zmiana atrybutu lang dla całej strony
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
